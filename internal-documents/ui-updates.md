@@ -22,11 +22,11 @@ This document tracks tasks for improving the UI design.
   - [x] Include props: name, image, description, onClick handler
   - [x] Structure: image container, title, description text
 
-- [ ] **Implement Card Grid Layout**
-  - [ ] Create responsive grid container
-  - [ ] Use CSS Grid or Flexbox for card layout
-  - [ ] Define breakpoints for mobile, tablet, desktop
-  - [ ] Set appropriate gap/spacing between cards
+- [x] **Implement Card Grid Layout**
+  - [x] Create responsive grid container
+  - [x] Use CSS Grid or Flexbox for card layout
+  - [x] Define breakpoints for mobile, tablet, desktop
+  - [x] Set appropriate gap/spacing between cards
 
 - [ ] **Add Game Images**
   - [ ] Determine image source/storage location
