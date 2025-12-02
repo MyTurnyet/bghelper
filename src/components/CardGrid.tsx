@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import './CardGrid.css'
 
 export interface CardGridProps {

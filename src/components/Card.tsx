@@ -12,15 +12,9 @@ const FALLBACK_IMAGE = '/images/placeholder.svg'
 
 function Card({ name, image, description, onClick }: CardProps) {
   const [imgSrc, setImgSrc] = useState(image)
-  const [isLoading, setIsLoading] = useState(true)
 
   const handleImageError = () => {
     setImgSrc(FALLBACK_IMAGE)
-    setIsLoading(false)
-  }
-
-  const handleImageLoad = () => {
-    setIsLoading(false)
   }
 
   return (
@@ -31,7 +25,6 @@ function Card({ name, image, description, onClick }: CardProps) {
           alt={name}
           className="card-image"
           onError={handleImageError}
-          onLoad={handleImageLoad}
           loading="lazy"
         />
       </div>
