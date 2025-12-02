@@ -57,11 +57,11 @@ This document tracks tasks for improving the UI design.
   - [x] Test desktop wide screens
   - [x] Adjust grid columns per breakpoint
 
-- [ ] **Accessibility Review**
-  - [ ] Add proper ARIA labels
-  - [ ] Ensure keyboard navigation works
-  - [ ] Test screen reader compatibility
-  - [ ] Add focus states for keyboard users
+- [x] **Accessibility Review**
+  - [x] Add proper ARIA labels
+  - [x] Ensure keyboard navigation works
+  - [x] Test screen reader compatibility
+  - [x] Add focus states for keyboard users
 
 - [ ] **Polish & Refinements**
   - [ ] Review spacing and alignment
