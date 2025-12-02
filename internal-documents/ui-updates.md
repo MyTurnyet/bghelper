@@ -34,17 +34,17 @@ This document tracks tasks for improving the UI design.
   - [x] Optimize image sizes for performance
   - [x] Add alt text for accessibility
 
-- [ ] **Style Cards**
-  - [ ] Design card appearance (borders, padding, background)
-  - [ ] Set typography for name and description
-  - [ ] Ensure consistent card heights or allow flexible heights
-  - [ ] Apply border-radius for rounded corners
+- [x] **Style Cards**
+  - [x] Design card appearance (borders, padding, background)
+  - [x] Set typography for name and description
+  - [x] Ensure consistent card heights or allow flexible heights
+  - [x] Apply border-radius for rounded corners
 
-- [ ] **Implement Hover Effects**
-  - [ ] Add subtle box-shadow on hover
-  - [ ] Include smooth transition animation
-  - [ ] Optional: slight scale or lift effect
-  - [ ] Ensure cursor changes to pointer
+- [x] **Implement Hover Effects**
+  - [x] Add subtle box-shadow on hover
+  - [x] Include smooth transition animation
+  - [x] Optional: slight scale or lift effect
+  - [x] Ensure cursor changes to pointer
 
 - [ ] **Connect to Navigation**
   - [ ] Link cards to respective helper pages/routes
