@@ -58,30 +58,24 @@
 - [x] Verify all routes work in production build
 
 ### Deployment
-- [ ] Run deployment script
+- [x] Run deployment script
   ```bash
   npm run deploy
   ```
-- [ ] Configure GitHub Pages in repository settings
+- [x] Configure GitHub Pages in repository settings
   - Go to Settings > Pages
   - Select `gh-pages` branch as source
   - Save configuration
-- [ ] Wait for GitHub Pages to build and deploy
-- [ ] Visit deployed site at `https://myturnyet.github.io/bghelper/`
+- [x] Wait for GitHub Pages to build and deploy
+- [x] Visit deployed site at `https://myturnyet.github.io/bghelper/`
 
 ### Post-Deployment Testing
-- [ ] Test all page routes on deployed site
-- [ ] Verify navigation works correctly
-- [ ] Test direct URL access to individual pages
-- [ ] Check for any console errors
-- [ ] Verify responsive design on different devices
-- [ ] Test all links and interactions
-
-### Optional Enhancements
-- [ ] Add custom 404 page
-- [ ] Implement lazy loading for page components
-- [ ] Add page transitions/animations
-- [ ] Set up custom domain (if desired)
-- [ ] Add SEO metadata to each page
-- [ ] Implement sitemap generation
-- [ ] Add analytics tracking
+- [x] Test all page routes on deployed site
+- [x] Verify navigation works correctly
+- [x] Test direct URL access to individual pages
+- [x] Fixed routing issue by switching from BrowserRouter to HashRouter
+  - URLs now use hash format: `https://myturnyet.github.io/bghelper/#/` and `https://myturnyet.github.io/bghelper/#/about`
+  - All routes work correctly with direct URL access
+- [ ] Check for any console errors (manual testing required)
+- [ ] Verify responsive design on different devices (manual testing required)
+- [ ] Test all links and interactions (manual testing required)

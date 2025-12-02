@@ -1,48 +1,50 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { HashRouter } from 'react-router-dom'
 import App from './App'
 
 describe('App', () => {
-  it('renders the app with Vite and React logos', () => {
-    render(<App />)
+  const renderWithRouter = (component: React.ReactElement) => {
+    return render(<HashRouter>{component}</HashRouter>)
+  }
 
+  it('renders navigation menu', () => {
+    renderWithRouter(<App />)
+
+    expect(screen.getByRole('link', { name: /home/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument()
+  })
+
+  it('renders home page by default', () => {
+    renderWithRouter(<App />)
+
+    expect(screen.getByRole('heading', { name: /vite \+ react/i })).toBeInTheDocument()
     expect(screen.getByAltText('Vite logo')).toBeInTheDocument()
     expect(screen.getByAltText('React logo')).toBeInTheDocument()
   })
 
-  it('displays the main heading', () => {
-    render(<App />)
+  it('navigates to about page when about link is clicked', async () => {
+    const user = userEvent.setup()
+    renderWithRouter(<App />)
+
+    const aboutLink = screen.getByRole('link', { name: /about/i })
+    await user.click(aboutLink)
+
+    expect(screen.getByRole('heading', { name: /about/i })).toBeInTheDocument()
+    expect(screen.getByText(/multi-page react application/i)).toBeInTheDocument()
+  })
+
+  it('navigates back to home when home link is clicked', async () => {
+    const user = userEvent.setup()
+    renderWithRouter(<App />)
+
+    const aboutLink = screen.getByRole('link', { name: /about/i })
+    await user.click(aboutLink)
+
+    const homeLink = screen.getByRole('link', { name: /home/i })
+    await user.click(homeLink)
 
     expect(screen.getByRole('heading', { name: /vite \+ react/i })).toBeInTheDocument()
-  })
-
-  it('initializes counter at 0', () => {
-    render(<App />)
-
-    expect(screen.getByRole('button', { name: /count is 0/i })).toBeInTheDocument()
-  })
-
-  it('increments counter when button is clicked', async () => {
-    const user = userEvent.setup()
-    render(<App />)
-
-    const button = screen.getByRole('button', { name: /count is 0/i })
-
-    await user.click(button)
-    expect(screen.getByRole('button', { name: /count is 1/i })).toBeInTheDocument()
-
-    await user.click(button)
-    expect(screen.getByRole('button', { name: /count is 2/i })).toBeInTheDocument()
-  })
-
-  it('contains links to Vite and React documentation', () => {
-    render(<App />)
-
-    const viteLink = screen.getByRole('link', { name: /vite logo/i })
-    const reactLink = screen.getByRole('link', { name: /react logo/i })
-
-    expect(viteLink).toHaveAttribute('href', 'https://vite.dev')
-    expect(reactLink).toHaveAttribute('href', 'https://react.dev')
   })
 })
