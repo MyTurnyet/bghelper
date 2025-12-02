@@ -17,10 +17,10 @@ This document tracks tasks for improving the UI design.
 
 ### Implementation Tasks
 
-- [ ] **Create Card Component**
-  - [ ] Build reusable card component for helpers
-  - [ ] Include props: name, image, description, onClick handler
-  - [ ] Structure: image container, title, description text
+- [x] **Create Card Component**
+  - [x] Build reusable card component for helpers
+  - [x] Include props: name, image, description, onClick handler
+  - [x] Structure: image container, title, description text
 
 - [ ] **Implement Card Grid Layout**
   - [ ] Create responsive grid container
