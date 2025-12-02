@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Card from './Card'
 
@@ -146,5 +146,69 @@ describe('Card', () => {
     await user.click(card)
 
     expect(handleClick).toHaveBeenCalledTimes(3)
+  })
+
+  it('uses lazy loading for images', () => {
+    render(<Card {...defaultProps} />)
+
+    const image = screen.getByAltText('Test Game Helper') as HTMLImageElement
+    expect(image).toHaveAttribute('loading', 'lazy')
+  })
+
+  it('handles image load error and falls back to placeholder', async () => {
+    render(<Card {...defaultProps} />)
+
+    const image = screen.getByAltText('Test Game Helper') as HTMLImageElement
+    expect(image).toHaveAttribute('src', 'https://example.com/test-image.jpg')
+
+    fireEvent.error(image)
+
+    await waitFor(() => {
+      expect(image).toHaveAttribute('src', '/images/placeholder.svg')
+    })
+  })
+
+  it('calls onLoad handler when image loads successfully', async () => {
+    render(<Card {...defaultProps} />)
+
+    const image = screen.getByAltText('Test Game Helper') as HTMLImageElement
+
+    fireEvent.load(image)
+
+    expect(image).toHaveAttribute('src', 'https://example.com/test-image.jpg')
+  })
+
+  it('maintains fallback image on subsequent errors', async () => {
+    render(<Card {...defaultProps} />)
+
+    const image = screen.getByAltText('Test Game Helper') as HTMLImageElement
+
+    fireEvent.error(image)
+
+    await waitFor(() => {
+      expect(image).toHaveAttribute('src', '/images/placeholder.svg')
+    })
+
+    fireEvent.error(image)
+
+    expect(image).toHaveAttribute('src', '/images/placeholder.svg')
+  })
+
+  it('handles invalid image URL gracefully', async () => {
+    const propsWithBadImage = {
+      ...defaultProps,
+      image: 'invalid-url',
+    }
+
+    render(<Card {...propsWithBadImage} />)
+
+    const image = screen.getByAltText('Test Game Helper') as HTMLImageElement
+    expect(image).toHaveAttribute('src', 'invalid-url')
+
+    fireEvent.error(image)
+
+    await waitFor(() => {
+      expect(image).toHaveAttribute('src', '/images/placeholder.svg')
+    })
   })
 })

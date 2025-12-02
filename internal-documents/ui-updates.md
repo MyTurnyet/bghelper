@@ -28,11 +28,11 @@ This document tracks tasks for improving the UI design.
   - [x] Define breakpoints for mobile, tablet, desktop
   - [x] Set appropriate gap/spacing between cards
 
-- [ ] **Add Game Images**
-  - [ ] Determine image source/storage location
-  - [ ] Implement image loading with fallback
-  - [ ] Optimize image sizes for performance
-  - [ ] Add alt text for accessibility
+- [x] **Add Game Images**
+  - [x] Determine image source/storage location
+  - [x] Implement image loading with fallback
+  - [x] Optimize image sizes for performance
+  - [x] Add alt text for accessibility
 
 - [ ] **Style Cards**
   - [ ] Design card appearance (borders, padding, background)

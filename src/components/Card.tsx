@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './Card.css'
 
 export interface CardProps {
@@ -7,11 +8,32 @@ export interface CardProps {
   onClick: () => void
 }
 
+const FALLBACK_IMAGE = '/images/placeholder.svg'
+
 function Card({ name, image, description, onClick }: CardProps) {
+  const [imgSrc, setImgSrc] = useState(image)
+  const [isLoading, setIsLoading] = useState(true)
+
+  const handleImageError = () => {
+    setImgSrc(FALLBACK_IMAGE)
+    setIsLoading(false)
+  }
+
+  const handleImageLoad = () => {
+    setIsLoading(false)
+  }
+
   return (
     <article className="card" onClick={onClick} role="button" tabIndex={0}>
       <div className="card-image-container">
-        <img src={image} alt={name} className="card-image" />
+        <img
+          src={imgSrc}
+          alt={name}
+          className="card-image"
+          onError={handleImageError}
+          onLoad={handleImageLoad}
+          loading="lazy"
+        />
       </div>
       <div className="card-content">
         <h3 className="card-title">{name}</h3>
