@@ -326,7 +326,7 @@ const helpers: Helper[] = [
   {
     id: 'dice-roller',
     name: 'Dice Roller',
-    image: '/images/placeholder.svg',
+    image: '/images/default_image.png',
     description: 'Roll dice for your board games. Supports standard six-sided dice.',
     path: '/helpers/dice-roller'
   }
