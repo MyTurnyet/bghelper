@@ -8,7 +8,7 @@ export interface CardProps {
   onClick: () => void
 }
 
-const FALLBACK_IMAGE = '/images/placeholder.svg'
+const FALLBACK_IMAGE = '/images/default_image.png'
 
 function Card({ name, image, description, onClick }: CardProps) {
   const [imgSrc, setImgSrc] = useState(image)

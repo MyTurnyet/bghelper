@@ -51,7 +51,7 @@ describe('Home', () => {
 
     const image = screen.getByAltText('Dice Roller') as HTMLImageElement
     expect(image).toBeInTheDocument()
-    expect(image).toHaveAttribute('src', '/images/placeholder.svg')
+    expect(image).toHaveAttribute('src', '/images/default_image.png')
   })
 
   it('navigates to dice roller when card is clicked', async () => {
