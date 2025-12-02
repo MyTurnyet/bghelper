@@ -14,14 +14,14 @@ const helpers: Helper[] = [
   {
     id: 'dice-roller',
     name: 'Dice Roller',
-    image: '/images/default_image.png',
+    image: '/bghelper/images/default_image.png',
     description: 'Roll dice for your board games. Supports standard six-sided dice.',
     path: '/helpers/dice-roller'
   },
   {
     id: 'shackleton-base',
     name: 'Shackleton Base',
-    image: '/images/default_image.png',
+    image: '/bghelper/images/default_image.png',
     description: 'Corporation setup randomizer for Shackleton Base. Includes preset games and random selection.',
     path: '/helpers/shackleton-base'
   }

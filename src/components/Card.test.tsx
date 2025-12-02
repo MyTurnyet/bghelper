@@ -164,7 +164,7 @@ describe('Card', () => {
     fireEvent.error(image)
 
     await waitFor(() => {
-      expect(image).toHaveAttribute('src', '/images/default_image.png')
+      expect(image).toHaveAttribute('src', '/bghelper/images/default_image.png')
     })
   })
 
@@ -186,12 +186,12 @@ describe('Card', () => {
     fireEvent.error(image)
 
     await waitFor(() => {
-      expect(image).toHaveAttribute('src', '/images/default_image.png')
+      expect(image).toHaveAttribute('src', '/bghelper/images/default_image.png')
     })
 
     fireEvent.error(image)
 
-    expect(image).toHaveAttribute('src', '/images/default_image.png')
+    expect(image).toHaveAttribute('src', '/bghelper/images/default_image.png')
   })
 
   it('handles invalid image URL gracefully', async () => {
@@ -208,7 +208,7 @@ describe('Card', () => {
     fireEvent.error(image)
 
     await waitFor(() => {
-      expect(image).toHaveAttribute('src', '/images/default_image.png')
+      expect(image).toHaveAttribute('src', '/bghelper/images/default_image.png')
     })
   })
 })
