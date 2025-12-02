@@ -3,54 +3,43 @@
 ## Multi-Page Site with GitHub Pages Deployment
 
 ### Project Setup
-- [ ] Install React Router for client-side routing
+- [x] Install React Router for client-side routing
   ```bash
   npm install react-router-dom
   ```
-- [ ] Configure base path in `vite.config.ts` for GitHub Pages
+- [x] Configure base path in `vite.config.ts` for GitHub Pages
   ```typescript
   base: '/bghelper/', // Replace with your repo name
   ```
 
 ### Project Structure
-- [ ] Create `src/pages/` directory for page components
-- [ ] Create `src/components/` directory for shared components
-- [ ] Create `src/layouts/` directory for layout components (header, footer, nav)
+- [x] Create `src/pages/` directory for page components
+- [x] Create `src/components/` directory for shared components
+- [x] Create `src/layouts/` directory for layout components (header, footer, nav)
 
 ### Routing Implementation
-- [ ] Set up React Router in `src/main.tsx`
+- [x] Set up React Router in `src/main.tsx`
   - Import `BrowserRouter` (or `HashRouter` for GitHub Pages compatibility)
   - Wrap `<App />` with router provider
-- [ ] Create route configuration in `src/App.tsx`
+- [x] Create route configuration in `src/App.tsx`
   - Define routes using `Routes` and `Route` components
   - Set up home page route
   - Set up additional page routes
   - Add 404/Not Found route
-- [ ] Create navigation component with links to all pages
+- [x] Create navigation component with links to all pages
 
 ### Page Components
-- [ ] Create Home page component
-- [ ] Create About page component
-- [ ] Create additional page components as needed
-- [ ] Implement consistent layout across pages
+- [x] Create Home page component
+- [x] Create About page component
+- [x] Create additional page components as needed
+- [x] Implement consistent layout across pages
 
 ### GitHub Pages Configuration
-- [ ] Initialize Git repository (if not already done)
-  ```bash
-  git init
-  git add .
-  git commit -m "Initial commit"
-  ```
-- [ ] Create GitHub repository
-- [ ] Add remote origin
-  ```bash
-  git remote add origin https://github.com/username/bghelper.git
-  ```
-- [ ] Install `gh-pages` package
+- [x] Install `gh-pages` package
   ```bash
   npm install -D gh-pages
   ```
-- [ ] Add deployment scripts to `package.json`
+- [x] Add deployment scripts to `package.json`
   ```json
   "scripts": {
     "predeploy": "npm run build",
@@ -59,14 +48,14 @@
   ```
 
 ### Build Configuration
-- [ ] Update `vite.config.ts` with correct base path
-- [ ] Ensure all routes work with GitHub Pages (consider using HashRouter)
-- [ ] Test build locally
+- [x] Update `vite.config.ts` with correct base path
+- [x] Ensure all routes work with GitHub Pages (consider using HashRouter)
+- [x] Test build locally
   ```bash
   npm run build
   npm run preview
   ```
-- [ ] Verify all routes work in production build
+- [x] Verify all routes work in production build
 
 ### Deployment
 - [ ] Run deployment script
@@ -78,7 +67,7 @@
   - Select `gh-pages` branch as source
   - Save configuration
 - [ ] Wait for GitHub Pages to build and deploy
-- [ ] Visit deployed site at `https://username.github.io/bghelper/`
+- [ ] Visit deployed site at `https://myturnyet.github.io/bghelper/`
 
 ### Post-Deployment Testing
 - [ ] Test all page routes on deployed site
