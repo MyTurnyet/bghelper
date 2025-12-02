@@ -19,9 +19,8 @@ describe('App', () => {
   it('renders home page by default', () => {
     renderWithRouter(<App />)
 
-    expect(screen.getByRole('heading', { name: /vite \+ react/i })).toBeInTheDocument()
-    expect(screen.getByAltText('Vite logo')).toBeInTheDocument()
-    expect(screen.getByAltText('React logo')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /board game helpers/i })).toBeInTheDocument()
+    expect(screen.getByText(/select a helper tool to get started/i)).toBeInTheDocument()
   })
 
   it('navigates to about page when about link is clicked', async () => {
@@ -45,6 +44,6 @@ describe('App', () => {
     const homeLink = screen.getByRole('link', { name: /home/i })
     await user.click(homeLink)
 
-    expect(screen.getByRole('heading', { name: /vite \+ react/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /board game helpers/i })).toBeInTheDocument()
   })
 })
