@@ -1,57 +1,87 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import { HashRouter } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
 import Home from './Home'
 
-describe('Home', () => {
-  it('renders Vite and React logos', () => {
-    render(<Home />)
+const mockNavigate = vi.fn()
 
-    expect(screen.getByAltText('Vite logo')).toBeInTheDocument()
-    expect(screen.getByAltText('React logo')).toBeInTheDocument()
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom')
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+  }
+})
+
+describe('Home', () => {
+  const renderWithRouter = () => {
+    return render(
+      <HashRouter>
+        <Home />
+      </HashRouter>
+    )
+  }
+
+  beforeEach(() => {
+    mockNavigate.mockClear()
   })
 
   it('displays the main heading', () => {
-    render(<Home />)
+    renderWithRouter()
 
-    expect(screen.getByRole('heading', { name: /vite \+ react/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /board game helpers/i })).toBeInTheDocument()
   })
 
-  it('initializes counter at 0', () => {
-    render(<Home />)
+  it('displays helper description text', () => {
+    renderWithRouter()
 
-    expect(screen.getByRole('button', { name: /count is 0/i })).toBeInTheDocument()
+    expect(screen.getByText(/select a helper tool to get started/i)).toBeInTheDocument()
   })
 
-  it('increments counter when button is clicked', async () => {
+  it('renders helper cards in a grid', () => {
+    renderWithRouter()
+
+    expect(screen.getByText('Dice Roller')).toBeInTheDocument()
+    expect(screen.getByText(/roll dice for your board games/i)).toBeInTheDocument()
+  })
+
+  it('renders card with correct image', () => {
+    renderWithRouter()
+
+    const image = screen.getByAltText('Dice Roller') as HTMLImageElement
+    expect(image).toBeInTheDocument()
+    expect(image).toHaveAttribute('src', '/images/placeholder.svg')
+  })
+
+  it('navigates to dice roller when card is clicked', async () => {
     const user = userEvent.setup()
-    render(<Home />)
+    renderWithRouter()
 
-    const button = screen.getByRole('button', { name: /count is 0/i })
+    const card = screen.getByRole('button', { name: /dice roller/i })
+    await user.click(card)
 
-    await user.click(button)
-    expect(screen.getByRole('button', { name: /count is 1/i })).toBeInTheDocument()
-
-    await user.click(button)
-    expect(screen.getByRole('button', { name: /count is 2/i })).toBeInTheDocument()
+    expect(mockNavigate).toHaveBeenCalledWith('/helpers/dice-roller')
+    expect(mockNavigate).toHaveBeenCalledTimes(1)
   })
 
-  it('contains links to Vite and React documentation', () => {
-    render(<Home />)
+  it('renders CardGrid component', () => {
+    renderWithRouter()
 
-    const viteLink = screen.getByRole('link', { name: /vite logo/i })
-    const reactLink = screen.getByRole('link', { name: /react logo/i })
-
-    expect(viteLink).toHaveAttribute('href', 'https://vite.dev')
-    expect(reactLink).toHaveAttribute('href', 'https://react.dev')
-    expect(viteLink).toHaveAttribute('target', '_blank')
-    expect(reactLink).toHaveAttribute('target', '_blank')
+    const grid = document.querySelector('.card-grid')
+    expect(grid).toBeInTheDocument()
   })
 
-  it('displays HMR instruction text', () => {
-    render(<Home />)
+  it('renders Card components with correct structure', () => {
+    renderWithRouter()
 
-    expect(screen.getByText(/edit/i)).toBeInTheDocument()
-    expect(screen.getByText(/src\/pages\/Home.tsx/i)).toBeInTheDocument()
+    const card = screen.getByRole('button', { name: /dice roller/i })
+    expect(card).toHaveClass('card')
+
+    const imageContainer = card.querySelector('.card-image-container')
+    expect(imageContainer).toBeInTheDocument()
+
+    const content = card.querySelector('.card-content')
+    expect(content).toBeInTheDocument()
   })
 })

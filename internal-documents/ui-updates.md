@@ -46,10 +46,10 @@ This document tracks tasks for improving the UI design.
   - [x] Optional: slight scale or lift effect
   - [x] Ensure cursor changes to pointer
 
-- [ ] **Connect to Navigation**
-  - [ ] Link cards to respective helper pages/routes
-  - [ ] Implement onClick navigation handlers
-  - [ ] Ensure proper routing setup
+- [x] **Connect to Navigation**
+  - [x] Link cards to respective helper pages/routes
+  - [x] Implement onClick navigation handlers
+  - [x] Ensure proper routing setup
 
 - [ ] **Test Responsiveness**
   - [ ] Verify layout on mobile devices

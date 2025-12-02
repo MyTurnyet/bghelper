@@ -1,33 +1,51 @@
-import { useState } from 'react'
-import reactLogo from '../assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useNavigate } from 'react-router-dom'
+import CardGrid from '../components/CardGrid'
+import Card from '../components/Card'
+
+interface Helper {
+  id: string
+  name: string
+  image: string
+  description: string
+  path: string
+}
+
+const helpers: Helper[] = [
+  {
+    id: 'dice-roller',
+    name: 'Dice Roller',
+    image: '/images/placeholder.svg',
+    description: 'Roll dice for your board games. Supports standard six-sided dice.',
+    path: '/helpers/dice-roller'
+  }
+]
 
 function Home() {
-  const [count, setCount] = useState(0)
+  const navigate = useNavigate()
+
+  const handleCardClick = (path: string) => {
+    navigate(path)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/pages/Home.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+    <div style={{ padding: '2rem' }}>
+      <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Board Game Helpers</h1>
+      <p style={{ textAlign: 'center', marginBottom: '3rem', color: 'rgba(255, 255, 255, 0.6)' }}>
+        Select a helper tool to get started
       </p>
-    </>
+
+      <CardGrid>
+        {helpers.map((helper) => (
+          <Card
+            key={helper.id}
+            name={helper.name}
+            image={helper.image}
+            description={helper.description}
+            onClick={() => handleCardClick(helper.path)}
+          />
+        ))}
+      </CardGrid>
+    </div>
   )
 }
 
