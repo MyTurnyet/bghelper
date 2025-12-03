@@ -1,7 +1,9 @@
 .navigation {
   padding: 1rem;
-  background-color: #242424;
+  background-color: var(--bg-secondary);
   margin-bottom: 2rem;
+  border-bottom: 2px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .navigation ul {
@@ -14,12 +16,15 @@
 }
 
 .navigation a {
-  color: rgba(255, 255, 255, 0.87);
+  color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s;
+  transition: all 0.3s;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
 }
 
 .navigation a:hover {
-  color: #646cff;
+  color: var(--accent-primary);
+  background-color: var(--bg-card);
 }

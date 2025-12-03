@@ -28,17 +28,17 @@ Create a setup randomizer helper page for Shackleton Base board game that helps 
 
 ## Features Required
 - [x] Create task checklist document
-- [ ] Create Shackleton Base page component
-- [ ] Set up routing for `/shackleton-base` path
-- [ ] Implement preset game selections (Games 1, 2, 3)
-- [ ] Implement random corporation selector
-  - Ensure all 3 selected corporations are unique
-  - Add re-roll button functionality
-- [ ] Add corporation descriptions for all 7 corporations
-- [ ] Display all options at once (presets + random on same page)
-- [ ] Style page to match existing site design
-- [ ] Update Home page card to link to Shackleton Base helper
-- [ ] Test all functionality
+- [x] Create Shackleton Base page component
+- [x] Set up routing for `/shackleton-base` path
+- [x] Implement preset game selections (Games 1, 2, 3)
+- [x] Implement random corporation selector
+  - [x] Ensure all 3 selected corporations are unique
+  - [x] Add re-roll button functionality
+- [x] Add corporation descriptions for all 7 corporations
+- [x] Display all options at once (presets + random on same page)
+- [x] Style page to match existing site design
+- [x] Update Home page card to link to Shackleton Base helper
+- [x] Test all functionality
 
 ## UI Layout
 - Show all preset games (1, 2, 3) displayed together

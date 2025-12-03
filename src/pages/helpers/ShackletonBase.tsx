@@ -58,19 +58,20 @@ function ShackletonBase() {
   const renderCorporationList = (corpNames: string[], title: string) => {
     return (
       <div style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+        backgroundColor: 'var(--bg-card)',
         padding: '0.75rem 1rem',
-        borderRadius: '6px',
-        marginBottom: '0.75rem'
+        borderRadius: '8px',
+        marginBottom: '0.75rem',
+        border: '1px solid var(--border-color)'
       }}>
-        <h3 style={{ marginTop: 0, marginBottom: '0.5rem', color: '#4a9eff', fontSize: '1rem' }}>{title}</h3>
+        <h3 style={{ marginTop: 0, marginBottom: '0.5rem', color: 'var(--accent-secondary)', fontSize: '1rem' }}>{title}</h3>
         <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
           {corpNames.map((corpName, index) => (
             <li key={index} style={{ marginBottom: '0.5rem' }}>
-              <div style={{ fontWeight: 'bold', fontSize: '0.95rem', marginBottom: '0.1rem' }}>
+              <div style={{ fontWeight: 'bold', fontSize: '0.95rem', marginBottom: '0.1rem', color: 'var(--text-primary)' }}>
                 {corpName}
               </div>
-              <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '0.85rem' }}>
+              <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
                 {getCorporationDescription(corpName)}
               </div>
             </li>
@@ -87,7 +88,7 @@ function ShackletonBase() {
         textAlign: 'center',
         marginBottom: '1rem',
         fontSize: '1rem',
-        color: 'rgba(255, 255, 255, 0.7)',
+        color: 'var(--text-secondary)',
         fontWeight: 'normal'
       }}>
         Corporation Setup Randomizer
@@ -96,34 +97,35 @@ function ShackletonBase() {
       <p style={{
         textAlign: 'center',
         marginBottom: '1.5rem',
-        color: 'rgba(255, 255, 255, 0.6)',
+        color: 'var(--text-secondary)',
         fontSize: '0.9rem'
       }}>
         Use these corporation combinations for your first three games, or generate a random selection.
       </p>
 
       <section style={{ marginBottom: '1.5rem' }}>
-        <h2 style={{ marginBottom: '0.75rem', fontSize: '1.25rem' }}>Preset Games</h2>
+        <h2 style={{ marginBottom: '0.75rem', fontSize: '1.25rem', color: 'var(--accent-primary)' }}>Preset Games</h2>
         <div style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+          backgroundColor: 'var(--bg-card)',
           padding: '0.75rem 1rem',
-          borderRadius: '6px',
-          fontSize: '0.9rem'
+          borderRadius: '8px',
+          fontSize: '0.9rem',
+          border: '1px solid var(--border-color)'
         }}>
           <div style={{ marginBottom: '0.5rem' }}>
-            <strong>1st game:</strong> {presetGames.game1.join(' + ')}
+            <strong style={{ color: 'var(--accent-secondary)' }}>1st game:</strong> {presetGames.game1.join(' + ')}
           </div>
           <div style={{ marginBottom: '0.5rem' }}>
-            <strong>2nd game:</strong> {presetGames.game2.join(' + ')}
+            <strong style={{ color: 'var(--accent-secondary)' }}>2nd game:</strong> {presetGames.game2.join(' + ')}
           </div>
           <div>
-            <strong>3rd game:</strong> {presetGames.game3.join(' + ')}
+            <strong style={{ color: 'var(--accent-secondary)' }}>3rd game:</strong> {presetGames.game3.join(' + ')}
           </div>
         </div>
       </section>
 
       <section>
-        <h2 style={{ marginBottom: '0.75rem', fontSize: '1.25rem' }}>Random Selection</h2>
+        <h2 style={{ marginBottom: '0.75rem', fontSize: '1.25rem', color: 'var(--accent-primary)' }}>Random Selection</h2>
         <button
           onClick={getRandomCorporations}
           style={{
@@ -132,11 +134,22 @@ function ShackletonBase() {
             cursor: 'pointer',
             marginBottom: '0.75rem',
             width: '100%',
-            backgroundColor: '#4a9eff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            fontWeight: 'bold'
+            backgroundColor: 'var(--accent-primary)',
+            color: 'var(--text-primary)',
+            border: '1px solid var(--border-color)',
+            borderRadius: '8px',
+            fontWeight: 'bold',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--accent-hover)'
+            e.currentTarget.style.transform = 'translateY(-2px)'
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(22, 160, 133, 0.3)'
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--accent-primary)'
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.boxShadow = 'none'
           }}
         >
           {randomSelection.length === 0 ? 'Generate Random Selection' : 'Re-roll'}

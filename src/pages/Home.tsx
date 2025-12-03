@@ -37,7 +37,7 @@ function Home() {
   return (
     <div style={{ padding: '2rem' }}>
       <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Board Game Helpers</h1>
-      <p style={{ textAlign: 'center', marginBottom: '3rem', color: 'rgba(255, 255, 255, 0.6)' }}>
+      <p style={{ textAlign: 'center', marginBottom: '3rem', color: 'var(--text-secondary)' }}>
         Select a helper tool to get started
       </p>
 
