@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import PageContainer from '../../components/PageContainer'
+import HelperHeader from '../../components/HelperHeader'
 
 interface Corporation {
   name: string
@@ -84,25 +85,12 @@ function ShackletonBase() {
 
   return (
     <PageContainer maxWidth="md">
-      <h1 style={{ textAlign: 'center', marginBottom: '0.25rem', fontSize: '1.75rem' }}>Shackleton Base</h1>
-      <h2 style={{
-        textAlign: 'center',
-        marginBottom: '1rem',
-        fontSize: '1rem',
-        color: 'var(--text-secondary)',
-        fontWeight: 'normal'
-      }}>
-        Corporation Setup Randomizer
-      </h2>
-
-      <p style={{
-        textAlign: 'center',
-        marginBottom: '1.5rem',
-        color: 'var(--text-secondary)',
-        fontSize: '0.9rem'
-      }}>
-        Use these corporation combinations for your first three games, or generate a random selection.
-      </p>
+      <HelperHeader
+        title="Shackleton Base"
+        description="Corporation setup randomizer for Shackleton Base. Use the preset combinations for your first three games, or generate a random selection."
+        imageSrc={`${import.meta.env.BASE_URL}images/shackleton_base.jpg`}
+        imageAlt="Shackleton Base - A Journey to the Moon"
+      />
 
       <section style={{ marginBottom: '1.5rem' }}>
         <h2 style={{ marginBottom: '0.75rem', fontSize: '1.25rem', color: 'var(--accent-primary)' }}>Preset Games</h2>

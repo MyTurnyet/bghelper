@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import PageContainer from '../../components/PageContainer'
+import HelperHeader from '../../components/HelperHeader'
 import './DiceRoller.css'
 
 function DiceRoller() {
@@ -29,13 +31,15 @@ function DiceRoller() {
   }
 
   return (
-    <div className="dice-roller-page">
-      <div className="dice-roller-container">
-        <h1 className="dice-roller-title">Dice Roller</h1>
-        <p className="dice-roller-subtitle">
-          Roll a six-sided die for your board game
-        </p>
+    <PageContainer maxWidth="md">
+      <HelperHeader
+        title="Dice Roller"
+        description="Roll a six-sided die for your board games. Perfect for when you've lost the dice or need a quick random number."
+        imageSrc={`${import.meta.env.BASE_URL}images/default_image.png`}
+        imageAlt="Dice Roller"
+      />
 
+      <div className="dice-roller-container">
         <div className="dice-display-area">
           {result !== null ? (
             <div className={`dice-result ${isRolling ? 'rolling' : 'landed'}`}>
@@ -69,7 +73,7 @@ function DiceRoller() {
           </div>
         </div>
       </div>
-    </div>
+    </PageContainer>
   )
 }
 

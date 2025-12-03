@@ -22,7 +22,7 @@ const helpers: Helper[] = [
   {
     id: 'shackleton-base',
     name: 'Shackleton Base',
-    image: '/bghelper/images/default_image.png',
+    image: '/bghelper/images/shackleton_base.jpg',
     description: 'Corporation setup randomizer for Shackleton Base. Includes preset games and random selection.',
     path: '/helpers/shackleton-base'
   }
