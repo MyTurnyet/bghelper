@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PageContainer from '../../components/PageContainer'
 
 interface Corporation {
   name: string
@@ -82,7 +83,7 @@ function ShackletonBase() {
   }
 
   return (
-    <div style={{ padding: '1rem', maxWidth: '700px', margin: '0 auto' }}>
+    <PageContainer maxWidth="md">
       <h1 style={{ textAlign: 'center', marginBottom: '0.25rem', fontSize: '1.75rem' }}>Shackleton Base</h1>
       <h2 style={{
         textAlign: 'center',
@@ -157,7 +158,7 @@ function ShackletonBase() {
 
         {randomSelection.length > 0 && renderCorporationList(randomSelection, 'Your Random Corporations')}
       </section>
-    </div>
+    </PageContainer>
   )
 }
 

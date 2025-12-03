@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import PageContainer from '../components/PageContainer'
 import CardGrid from '../components/CardGrid'
 import Card from '../components/Card'
 
@@ -35,9 +36,9 @@ function Home() {
   }
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Board Game Helpers</h1>
-      <p style={{ textAlign: 'center', marginBottom: '3rem', color: 'var(--text-secondary)' }}>
+    <PageContainer maxWidth="xl">
+      <h1 style={{ textAlign: 'center', marginBottom: '1rem' }}>Board Game Helpers</h1>
+      <p style={{ textAlign: 'center', marginBottom: '3rem', color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
         Select a helper tool to get started
       </p>
 
@@ -52,7 +53,7 @@ function Home() {
           />
         ))}
       </CardGrid>
-    </div>
+    </PageContainer>
   )
 }
 

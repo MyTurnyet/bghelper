@@ -1,0 +1,45 @@
+.page-container {
+  flex: 1;
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+.page-container.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+}
+
+.page-content {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.page-content-sm {
+  max-width: 640px;
+}
+
+.page-content-md {
+  max-width: 768px;
+}
+
+.page-content-lg {
+  max-width: 1024px;
+}
+
+.page-content-xl {
+  max-width: 1280px;
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    padding: 3rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-container {
+    padding: 4rem 2rem;
+  }
+}
