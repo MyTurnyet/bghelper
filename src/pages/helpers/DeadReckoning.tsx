@@ -9,6 +9,7 @@ import PageContainer from '../../components/PageContainer'
 import HelperHeader from '../../components/HelperHeader'
 import CovenantTracker from '../../components/deadReckoning/CovenantTracker'
 import AchievementTracker from '../../components/deadReckoning/AchievementTracker'
+import BattleCalculator from '../../components/deadReckoning/BattleCalculator'
 import EndTurnModal from '../../components/deadReckoning/EndTurnModal'
 import GameOverModal from '../../components/deadReckoning/GameOverModal'
 import { useDeadReckoningGame } from '../../hooks/useDeadReckoningGame'
@@ -27,6 +28,10 @@ function DeadReckoning() {
     setCovenantDamage,
     setShipUpgrades,
     convertWoodToCoins,
+    addCovenantWood,
+    addCovenantCoins,
+    addCovenantDamage,
+    setPiratePileCount,
     updateCovenantAchievements,
     setPlayerAchievementCount
   } = useDeadReckoningGame()
@@ -90,6 +95,27 @@ function DeadReckoning() {
       }, 300)
     }
   }, [covenantAchievementCount, gameState.playerAchievementCount, gameState.turn])
+
+  // Battle Calculator Handlers
+  const handleBattleDamage = (damage: number) => {
+    const currentDamage = gameState.covenant.damage
+    const newDamage = currentDamage + damage
+
+    // Add the damage
+    addCovenantDamage(damage)
+
+    // Check if Covenant was sunk (reaches 5+ damage)
+    if (newDamage >= 5 && currentDamage < 5) {
+      // Prompt to add Legendary cube
+      setTimeout(() => {
+        if (confirm('The Covenant ship has been sunk!\n\nAdd a Legendary achievement cube?')) {
+          updateCovenantAchievements({
+            legendary: Math.min(4, gameState.covenantAchievements.legendary + 1)
+          })
+        }
+      }, 100)
+    }
+  }
 
   // Setup screen
   if (showSetup) {
@@ -362,6 +388,16 @@ function DeadReckoning() {
         capitalistAchieved={gameState.covenant.coins >= 30}
       />
 
+      {/* Battle Calculator */}
+      <BattleCalculator
+        shipUpgrades={gameState.covenant.shipUpgrades}
+        piratePileCount={gameState.covenant.piratePileCount}
+        onCoinsChange={addCovenantCoins}
+        onWoodChange={addCovenantWood}
+        onDamageChange={handleBattleDamage}
+        onPiratePileChange={setPiratePileCount}
+      />
+
       {/* Placeholder for future components */}
       <section style={{
         backgroundColor: 'var(--bg-card)',
@@ -372,7 +408,7 @@ function DeadReckoning() {
       }}>
         <h3 style={{ color: 'var(--text-secondary)' }}>More features coming soon...</h3>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-          Battle calculator and advancement piles will be added in the next sprint.
+          Advancement pile tracking and other features will be added in the next sprint.
         </p>
       </section>
 
