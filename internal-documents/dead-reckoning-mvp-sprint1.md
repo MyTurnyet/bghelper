@@ -10,7 +10,7 @@ Ensure that all code added is fully unit tested and functioning.
 
 ## Current Status
 
-**✅ Tasks 1-6 COMPLETED** (as of 2025-12-05)
+**✅ Tasks 1-7 COMPLETED** (as of 2025-12-05)
 
 ### Completed Features:
 - ✅ Project setup and routing
@@ -21,16 +21,16 @@ Ensure that all code added is fully unit tested and functioning.
 - ✅ Turn management with modal dialogs
 - ✅ Turn history tracking (last 5 turns)
 - ✅ Game over detection with modal dialog
-- ✅ 252 unit tests passing (100% pass rate)
+- ✅ Battle calculator with cannon strength and outcome recording
+- ✅ 313 unit tests passing (100% pass rate)
 
 ### Code Quality:
-- **Total Tests**: 252 passing
+- **Total Tests**: 313 passing (61 new tests for BattleCalculator)
 - **Test Coverage**: Comprehensive coverage of all components and hooks
 - **Build Status**: Successful
 - **TypeScript**: No compilation errors
 
 ### Remaining Tasks:
-- Task 7: Battle Calculator
 - Task 8: Advancement Pile Tracker
 - Task 9: Difficulty Selector Enhancements (Optional)
 - Task 10: Styling & Polish (Optional)
@@ -256,23 +256,23 @@ Track Covenant achievements with manual inputs:
 
 ---
 
-### 7. Simple Battle Calculator (Phase 3.1, 3.2 - Minimal)
+### 7. Simple Battle Calculator (Phase 3.1, 3.2 - Minimal) ✅
 
 **Component**: `src/components/deadReckoning/BattleCalculator.tsx`
 
 **Tasks**:
-- [ ] Display Covenant cannon calculation:
+- [x] Display Covenant cannon calculation:
   - Base: 1
   - Ship Upgrades: +X (from tracker)
   - Pirate Pile: +1 per 2 advancements
   - Harbor Defense: +4 checkbox (toggle)
   - Buildings on Space: +X (manual input, 0-3)
   - **Total**: Large prominent number
-- [ ] Manual inputs:
+- [x] Manual inputs:
   - Pirate pile advancement count
   - "Defending in Harbor" checkbox
   - Buildings on space (0-3)
-- [ ] Battle outcome section:
+- [x] Battle outcome section:
   - "Covenant Won" button:
     - Inputs: Wood gained, Coins gained
     - Auto-adds to Covenant supply
@@ -281,7 +281,18 @@ Track Covenant achievements with manual inputs:
     - Adds to Covenant damage tracker
     - Prompts Legendary cube if Covenant sunk
 
-**Acceptance Criteria**: Can calculate cannons and record battle outcomes
+**Implementation Details**:
+- Full cannon calculation with visual breakdown of all 5 modifiers
+- Large prominent total display (3rem font size)
+- Three manual input sections with +/- buttons and constraints
+- Battle outcome recording with unified form for both scenarios
+- Input validation (min 0 for all values)
+- Automatic legendary cube prompt when damage crosses 5 threshold
+- Battle inputs reset after confirmation (harbor, buildings)
+- 61 comprehensive unit tests covering all functionality
+- Component integrated into DeadReckoning.tsx
+
+**Acceptance Criteria**: Can calculate cannons and record battle outcomes ✅
 
 ---
 

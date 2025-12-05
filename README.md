@@ -18,10 +18,11 @@ Corporation setup randomizer for the board game Shackleton Base. Includes preset
 Comprehensive solo mode helper for managing the Wayward Covenant AI opponent in Dead Reckoning. Features include:
 - Resource tracking (coins, wood, damage, ship upgrades)
 - All 8 achievement tracking with automatic detection
+- Battle calculator with cannon strength calculation
 - Turn management with end-of-turn resource collection
 - Turn history log
 - Game over detection and scoring
-- 252+ unit tests ensuring reliability
+- 313+ unit tests ensuring reliability
 
 ## Tech Stack
 
@@ -76,7 +77,7 @@ npm test
 ```
 
 **Current Test Coverage**:
-- 252+ tests passing
+- 313+ tests passing
 - Components, hooks, and types fully tested
 - 100% pass rate
 
