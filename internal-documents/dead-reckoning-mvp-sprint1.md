@@ -10,17 +10,17 @@ Ensure that all code added is fully unit tested and functioning.
 
 ## Sprint 1 Task Checklist
 
-### 1. Project Setup & Routing
-- [ ] Create new route `/helpers/dead-reckoning` in `src/App.tsx`
-- [ ] Create new page component: `src/pages/helpers/DeadReckoning.tsx`
-- [ ] Add Dead Reckoning to home page game list with image
-- [ ] Test navigation works
+### 1. Project Setup & Routing ✅
+- [x] Create new route `/helpers/dead-reckoning` in `src/App.tsx`
+- [x] Create new page component: `src/pages/helpers/DeadReckoning.tsx`
+- [x] Add Dead Reckoning to home page game list with image
+- [x] Test navigation works
 
-**Acceptance Criteria**: Can navigate to Dead Reckoning page from home
+**Acceptance Criteria**: Can navigate to Dead Reckoning page from home ✅
 
 ---
 
-### 2. Basic Game State (Phase 1.1)
+### 2. Basic Game State (Phase 1.1) ✅
 
 **File**: `src/types/deadReckoning.ts`
 
@@ -58,23 +58,24 @@ interface GameState {
 ```
 
 **Tasks**:
-- [ ] Create `src/types/deadReckoning.ts` with interfaces
-- [ ] Create `src/hooks/useDeadReckoningGame.ts` with state management
-- [ ] Implement `initializeGame()` function
+- [x] Create `src/types/deadReckoning.ts` with interfaces
+- [x] Create `src/hooks/useDeadReckoningGame.ts` with state management
+- [x] Implement `initializeGame()` function
   - Covenant starts with 15 coins, 0 wood, 0 damage
   - Turn starts at 0
   - All achievements at 0/false
-- [ ] Implement basic state setters:
+- [x] Implement basic state setters:
   - `setCovenantCoins(amount: number)`
   - `addCovenantWood(amount: number)`
   - `setCovenantDamage(damage: number)`
   - `incrementTurn()`
+- [x] Comprehensive unit tests (37 type tests + 48 hook tests)
 
-**Acceptance Criteria**: Game state initializes and can be updated
+**Acceptance Criteria**: Game state initializes and can be updated ✅
 
 ---
 
-### 3. Game Layout & Header
+### 3. Game Layout & Header ✅
 
 **File**: `src/pages/helpers/DeadReckoning.tsx`
 
@@ -85,38 +86,43 @@ Create basic page structure with:
 - Main game area (placeholder for now)
 
 **Tasks**:
-- [ ] Add `HelperHeader` component with Dead Reckoning title
-- [ ] Create turn counter display (prominent, large text)
+- [x] Add `HelperHeader` component with Dead Reckoning title
+- [x] Create turn counter display (prominent, large text)
   - Shows current turn number
   - Shows card section (A for turns 1-3, B for 4-6, etc.)
-- [ ] Add "End Turn" button
-- [ ] Add "New Game" / "Reset" button
+- [x] Add "End Turn" button
+- [x] Add "New Game" / "Reset" button
+- [x] Difficulty selector (Normal/Expert) on setup screen
+- [x] Game end warning when 4 achievements reached
 
-**Acceptance Criteria**: Page displays header, turn counter, and basic controls
+**Acceptance Criteria**: Page displays header, turn counter, and basic controls ✅
 
 ---
 
-### 4. Covenant Resource Tracker (Phase 4.1 - Simplified)
+### 4. Covenant Resource Tracker (Phase 4.1 - Simplified) ✅
 
 **Component**: `src/components/deadReckoning/CovenantTracker.tsx`
 
 Display and manage Covenant resources:
 
 **Tasks**:
-- [ ] Create card-style component showing:
+- [x] Create card-style component showing:
   - **Coins**: Large number with +/- buttons
   - **Wood**: Number with +/- buttons + "Convert to Coins" button (3:1)
   - **Damage**: Visual indicator (0-5 hearts/icons), +/- buttons
   - **Ship Upgrades**: Counter (0-4) with +/- buttons
-- [ ] Implement wood-to-coin conversion:
+- [x] Implement wood-to-coin conversion:
   - Button disabled if wood < 3
   - Converts 3 wood → 1 coin automatically
   - Shows remaining wood
-- [ ] Auto-check Capitalist achievement (30+ coins)
-- [ ] Auto-check Elite Vessel achievement (4 upgrades)
-- [ ] Visual warning at 30+ coins ("Capitalist Achievement!")
+- [x] Auto-check Capitalist achievement (30+ coins)
+- [x] Auto-check Elite Vessel achievement (4 upgrades)
+- [x] Visual warning at 30+ coins ("Capitalist Achievement!")
+- [x] Visual warning at 5+ damage ("Ship Sunk!")
+- [x] Comprehensive unit tests (39 tests covering all functionality)
+- [x] Component integrated into DeadReckoning.tsx
 
-**Acceptance Criteria**: Can track and modify all Covenant resources
+**Acceptance Criteria**: Can track and modify all Covenant resources ✅
 
 ---
 

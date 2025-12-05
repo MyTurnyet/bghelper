@@ -7,6 +7,7 @@
 import { useState } from 'react'
 import PageContainer from '../../components/PageContainer'
 import HelperHeader from '../../components/HelperHeader'
+import CovenantTracker from '../../components/deadReckoning/CovenantTracker'
 import { useDeadReckoningGame } from '../../hooks/useDeadReckoningGame'
 import type { Difficulty } from '../../types/deadReckoning'
 
@@ -21,7 +22,8 @@ function DeadReckoning() {
     setCovenantCoins,
     setCovenantWood,
     setCovenantDamage,
-    setShipUpgrades
+    setShipUpgrades,
+    convertWoodToCoins
   } = useDeadReckoningGame()
 
   const [showSetup, setShowSetup] = useState(true)
@@ -238,225 +240,14 @@ function DeadReckoning() {
       )}
 
       {/* Covenant Resources */}
-      <section style={{
-        backgroundColor: 'var(--bg-card)',
-        padding: '1.5rem',
-        borderRadius: '12px',
-        marginBottom: '1.5rem',
-        border: '1px solid var(--border-color)'
-      }}>
-        <h2 style={{ marginTop: 0, marginBottom: '1rem', color: 'var(--accent-secondary)' }}>
-          Covenant Resources
-        </h2>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '1rem'
-        }}>
-          {/* Coins */}
-          <div style={{
-            padding: '1rem',
-            backgroundColor: 'var(--bg-secondary)',
-            borderRadius: '8px',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
-              Coins
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-              <button
-                onClick={() => setCovenantCoins(gameState.covenant.coins - 1)}
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  fontSize: '1.5rem',
-                  cursor: 'pointer',
-                  backgroundColor: 'var(--accent-primary)',
-                  color: 'var(--text-primary)',
-                  border: 'none',
-                  borderRadius: '4px'
-                }}
-              >
-                -
-              </button>
-              <span style={{ fontSize: '2rem', fontWeight: 'bold', minWidth: '60px' }}>
-                {gameState.covenant.coins}
-              </span>
-              <button
-                onClick={() => setCovenantCoins(gameState.covenant.coins + 1)}
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  fontSize: '1.5rem',
-                  cursor: 'pointer',
-                  backgroundColor: 'var(--accent-primary)',
-                  color: 'var(--text-primary)',
-                  border: 'none',
-                  borderRadius: '4px'
-                }}
-              >
-                +
-              </button>
-            </div>
-            {gameState.covenant.coins >= 30 && (
-              <div style={{ fontSize: '0.8rem', color: '#28a745', marginTop: '0.5rem', fontWeight: 'bold' }}>
-                ✓ Capitalist Achieved!
-              </div>
-            )}
-          </div>
-
-          {/* Wood */}
-          <div style={{
-            padding: '1rem',
-            backgroundColor: 'var(--bg-secondary)',
-            borderRadius: '8px',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
-              Wood
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-              <button
-                onClick={() => setCovenantWood(gameState.covenant.wood - 1)}
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  fontSize: '1.5rem',
-                  cursor: 'pointer',
-                  backgroundColor: 'var(--accent-primary)',
-                  color: 'var(--text-primary)',
-                  border: 'none',
-                  borderRadius: '4px'
-                }}
-              >
-                -
-              </button>
-              <span style={{ fontSize: '2rem', fontWeight: 'bold', minWidth: '60px' }}>
-                {gameState.covenant.wood}
-              </span>
-              <button
-                onClick={() => setCovenantWood(gameState.covenant.wood + 1)}
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  fontSize: '1.5rem',
-                  cursor: 'pointer',
-                  backgroundColor: 'var(--accent-primary)',
-                  color: 'var(--text-primary)',
-                  border: 'none',
-                  borderRadius: '4px'
-                }}
-              >
-                +
-              </button>
-            </div>
-          </div>
-
-          {/* Damage */}
-          <div style={{
-            padding: '1rem',
-            backgroundColor: 'var(--bg-secondary)',
-            borderRadius: '8px',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
-              Damage
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-              <button
-                onClick={() => setCovenantDamage(gameState.covenant.damage - 1)}
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  fontSize: '1.5rem',
-                  cursor: 'pointer',
-                  backgroundColor: 'var(--accent-primary)',
-                  color: 'var(--text-primary)',
-                  border: 'none',
-                  borderRadius: '4px'
-                }}
-              >
-                -
-              </button>
-              <span style={{ fontSize: '2rem', fontWeight: 'bold', minWidth: '60px', color: gameState.covenant.damage >= 5 ? '#dc3545' : 'inherit' }}>
-                {gameState.covenant.damage}
-              </span>
-              <button
-                onClick={() => setCovenantDamage(gameState.covenant.damage + 1)}
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  fontSize: '1.5rem',
-                  cursor: 'pointer',
-                  backgroundColor: 'var(--accent-primary)',
-                  color: 'var(--text-primary)',
-                  border: 'none',
-                  borderRadius: '4px'
-                }}
-              >
-                +
-              </button>
-            </div>
-            {gameState.covenant.damage >= 5 && (
-              <div style={{ fontSize: '0.8rem', color: '#dc3545', marginTop: '0.5rem', fontWeight: 'bold' }}>
-                ⚠️ Ship Sunk!
-              </div>
-            )}
-          </div>
-
-          {/* Ship Upgrades */}
-          <div style={{
-            padding: '1rem',
-            backgroundColor: 'var(--bg-secondary)',
-            borderRadius: '8px',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
-              Ship Upgrades
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-              <button
-                onClick={() => setShipUpgrades(gameState.covenant.shipUpgrades - 1)}
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  fontSize: '1.5rem',
-                  cursor: 'pointer',
-                  backgroundColor: 'var(--accent-primary)',
-                  color: 'var(--text-primary)',
-                  border: 'none',
-                  borderRadius: '4px'
-                }}
-              >
-                -
-              </button>
-              <span style={{ fontSize: '2rem', fontWeight: 'bold', minWidth: '60px' }}>
-                {gameState.covenant.shipUpgrades}
-              </span>
-              <button
-                onClick={() => setShipUpgrades(gameState.covenant.shipUpgrades + 1)}
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  fontSize: '1.5rem',
-                  cursor: 'pointer',
-                  backgroundColor: 'var(--accent-primary)',
-                  color: 'var(--text-primary)',
-                  border: 'none',
-                  borderRadius: '4px'
-                }}
-              >
-                +
-              </button>
-            </div>
-            {gameState.covenant.shipUpgrades >= 4 && (
-              <div style={{ fontSize: '0.8rem', color: '#28a745', marginTop: '0.5rem', fontWeight: 'bold' }}>
-                ✓ Elite Vessel Achieved!
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
+      <CovenantTracker
+        covenant={gameState.covenant}
+        onCoinsChange={setCovenantCoins}
+        onWoodChange={setCovenantWood}
+        onDamageChange={setCovenantDamage}
+        onShipUpgradesChange={setShipUpgrades}
+        onConvertWood={convertWoodToCoins}
+      />
 
       {/* Placeholder for future components */}
       <section style={{
