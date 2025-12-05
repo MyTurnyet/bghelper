@@ -14,6 +14,15 @@ Roll a six-sided die for your board games. Perfect for when you've lost the dice
 ### Shackleton Base
 Corporation setup randomizer for the board game Shackleton Base. Includes preset corporation combinations for your first three games, plus a random selection generator.
 
+### Dead Reckoning (Solo Mode)
+Comprehensive solo mode helper for managing the Wayward Covenant AI opponent in Dead Reckoning. Features include:
+- Resource tracking (coins, wood, damage, ship upgrades)
+- All 8 achievement tracking with automatic detection
+- Turn management with end-of-turn resource collection
+- Turn history log
+- Game over detection and scoring
+- 252+ unit tests ensuring reliability
+
 ## Tech Stack
 
 - **React** - UI framework
@@ -52,10 +61,26 @@ The app will be available at `http://localhost:5173`
 
 - `npm run dev` - Start development server with hot reload
 - `npm run build` - Build for production (TypeScript compilation + Vite build)
+- `npm test` - Run unit tests with Vitest
 - `npm run predeploy` - Run build before deployment
 - `npm run deploy` - Deploy to GitHub Pages
 - `npm run preview` - Preview production build locally
 - `npm run lint` - Run ESLint
+
+### Testing
+
+The project uses Vitest and React Testing Library for comprehensive unit testing:
+
+```bash
+npm test
+```
+
+**Current Test Coverage**:
+- 252+ tests passing
+- Components, hooks, and types fully tested
+- 100% pass rate
+
+Tests are located alongside their source files with `.test.tsx` or `.test.ts` extensions.
 
 ## Deployment
 
@@ -75,22 +100,38 @@ This will:
 ```
 bghelper/
 ├── public/
-│   └── images/          # Game images and assets
+│   └── images/                    # Game images and assets
 ├── src/
-│   ├── components/      # Reusable UI components
+│   ├── components/                # Reusable UI components
+│   │   ├── deadReckoning/         # Dead Reckoning-specific components
+│   │   │   ├── AchievementTracker.tsx
+│   │   │   ├── CovenantTracker.tsx
+│   │   │   ├── EndTurnModal.tsx
+│   │   │   └── GameOverModal.tsx
 │   │   ├── Card.tsx
 │   │   ├── CardGrid.tsx
 │   │   ├── HelperHeader.tsx
+│   │   ├── Navigation.tsx
 │   │   └── PageContainer.tsx
 │   ├── pages/
-│   │   ├── helpers/     # Individual helper pages
+│   │   ├── helpers/               # Individual helper pages
+│   │   │   ├── DeadReckoning.tsx
 │   │   │   ├── DiceRoller.tsx
 │   │   │   └── ShackletonBase.tsx
-│   │   └── Home.tsx     # Homepage with helper cards
-│   ├── App.tsx          # Main app component with routing
-│   └── main.tsx         # Entry point
-├── dist/                # Production build output
-└── vite.config.ts       # Vite configuration
+│   │   ├── About.tsx
+│   │   ├── Home.tsx               # Homepage with helper cards
+│   │   └── NotFound.tsx
+│   ├── hooks/                     # Custom React hooks
+│   │   └── useDeadReckoningGame.ts
+│   ├── types/                     # TypeScript type definitions
+│   │   └── deadReckoning.ts
+│   ├── App.tsx                    # Main app component with routing
+│   └── main.tsx                   # Entry point
+├── internal-documents/            # Project documentation
+│   ├── dead-reckoning-solo-helper.md
+│   └── dead-reckoning-mvp-sprint1.md
+├── dist/                          # Production build output
+└── vite.config.ts                 # Vite configuration
 ```
 
 ## Adding New Helpers
