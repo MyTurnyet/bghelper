@@ -10,7 +10,7 @@ Ensure that all code added is fully unit tested and functioning.
 
 ## Current Status
 
-**✅ Tasks 1-7 COMPLETED** (as of 2025-12-05)
+**✅ Tasks 1-9 COMPLETED** (as of 2025-12-05)
 
 ### Completed Features:
 - ✅ Project setup and routing
@@ -22,17 +22,18 @@ Ensure that all code added is fully unit tested and functioning.
 - ✅ Turn history tracking (last 5 turns)
 - ✅ Game over detection with modal dialog
 - ✅ Battle calculator with cannon strength and outcome recording
-- ✅ 313 unit tests passing (100% pass rate)
+- ✅ Advancement pile tracking (Pirate & Mercantile) with income calculation
+- ✅ Merchant Ship encounter with coin flip mechanic
+- ✅ Difficulty selector (Normal/Expert modes)
+- ✅ 362 unit tests passing (100% pass rate)
 
 ### Code Quality:
-- **Total Tests**: 313 passing (61 new tests for BattleCalculator)
+- **Total Tests**: 362 passing (49 new tests for AdvancementPiles)
 - **Test Coverage**: Comprehensive coverage of all components and hooks
 - **Build Status**: Successful
 - **TypeScript**: No compilation errors
 
 ### Remaining Tasks:
-- Task 8: Advancement Pile Tracker
-- Task 9: Difficulty Selector Enhancements (Optional)
 - Task 10: Styling & Polish (Optional)
 
 ---
@@ -296,42 +297,65 @@ Track Covenant achievements with manual inputs:
 
 ---
 
-### 8. Advancement Pile Tracker (Phase 2.1 - Minimal)
+### 8. Advancement Pile Tracker (Phase 2.1 - Minimal) ✅
 
 **Component**: `src/components/deadReckoning/AdvancementPiles.tsx`
 
 **Tasks**:
-- [ ] Display two piles:
+- [x] Display two piles:
   - **Pirate Pile**: Count with +/- buttons
   - **Mercantile Pile**: Count with +/- buttons
-- [ ] Show Mercantile Income calculation:
+- [x] Show Mercantile Income calculation:
   - Formula: Floor(Mercantile Pile / 2)
   - Display: "Mercantile Income: X coins/turn"
   - Button: "Collect Mercantile Income" (adds coins)
-- [ ] Merchant Ship Coin Flip:
+- [x] Merchant Ship Coin Flip:
   - Button: "Flip for Merchant Ship"
   - Random Heads/Tails result
   - Heads: "Add to Legendary + Mercantile Pile"
   - Tails: "Add to Mercantile Pile"
 
-**Acceptance Criteria**: Can track both piles and calculate income
+**Implementation Details**:
+- Pirate Pile counter with validation (min 0)
+- Mercantile Pile counter with validation (min 0)
+- Real-time income calculation with formula display
+- Collect button disabled when income is 0
+- Merchant Ship flip with visual modal result display
+  * Crown icon (👑) for Heads, Wave icon (🌊) for Tails
+  * Clear messaging for each outcome
+  * Confirm/cancel buttons for player control
+- Legendary cube handler integration for heads outcome
+- 49 comprehensive unit tests covering all functionality
+- Component integrated into DeadReckoning.tsx
+
+**Acceptance Criteria**: Can track both piles and calculate income ✅
 
 ---
 
-### 9. Difficulty Selector (Phase 5.1 - Minimal)
+### 9. Difficulty Selector (Phase 5.1 - Minimal) ✅
 
 **Component**: Game setup screen
 
 **Tasks**:
-- [ ] Add difficulty selector to setup:
+- [x] Add difficulty selector to setup:
   - Radio buttons: Normal / Expert
   - Description for each
   - Normal: "All blue cards"
   - Expert: "All red cards"
-- [ ] Store in game state
-- [ ] Display current difficulty on main screen
+- [x] Store in game state
+- [x] Display current difficulty on main screen
 
-**Acceptance Criteria**: Can select difficulty at game start
+**Implementation Details**:
+- Full-screen setup modal before game starts
+- Two large, styled buttons for Normal and Expert
+- Normal button: Teal accent color, "All Covenant cards use blue (Normal) side"
+- Expert button: Purple accent color, "All Covenant cards use red (Hard) side"
+- Difficulty stored in game state and passed to initializeGame
+- Displayed in HelperHeader on main screen: "Playing on Normal/Expert difficulty"
+- Button hover effects and transitions for better UX
+- Already implemented in Tasks 1-6, verified in Task 9
+
+**Acceptance Criteria**: Can select difficulty at game start ✅
 
 ---
 

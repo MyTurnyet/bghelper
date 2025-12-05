@@ -19,10 +19,14 @@ Comprehensive solo mode helper for managing the Wayward Covenant AI opponent in 
 - Resource tracking (coins, wood, damage, ship upgrades)
 - All 8 achievement tracking with automatic detection
 - Battle calculator with cannon strength calculation
+- Advancement pile tracking (Pirate & Mercantile)
+- Mercantile income calculation and collection
+- Merchant Ship encounter with coin flip mechanic
 - Turn management with end-of-turn resource collection
 - Turn history log
+- Difficulty selection (Normal/Expert modes)
 - Game over detection and scoring
-- 313+ unit tests ensuring reliability
+- 362+ unit tests ensuring reliability
 
 ## Tech Stack
 
@@ -77,7 +81,7 @@ npm test
 ```
 
 **Current Test Coverage**:
-- 313+ tests passing
+- 362+ tests passing
 - Components, hooks, and types fully tested
 - 100% pass rate
 
