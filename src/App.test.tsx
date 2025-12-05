@@ -31,7 +31,7 @@ describe('App', () => {
     await user.click(aboutLink)
 
     expect(screen.getByRole('heading', { name: /about/i })).toBeInTheDocument()
-    expect(screen.getByText(/multi-page react application/i)).toBeInTheDocument()
+    expect(screen.getByText(/collection of digital tools/i)).toBeInTheDocument()
   })
 
   it('navigates back to home when home link is clicked', async () => {

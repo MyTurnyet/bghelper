@@ -25,6 +25,13 @@ const helpers: Helper[] = [
     image: '/bghelper/images/shackleton_base.jpg',
     description: 'Corporation setup randomizer for Shackleton Base. Includes preset games and random selection.',
     path: '/helpers/shackleton-base'
+  },
+  {
+    id: 'dead-reckoning',
+    name: 'Dead Reckoning',
+    image: '/bghelper/images/default_image.png',
+    description: 'Solo mode helper for managing the Wayward Covenant AI opponent. Track resources, achievements, and battles.',
+    path: '/helpers/dead-reckoning'
   }
 ]
 

@@ -12,16 +12,17 @@ describe('About', () => {
   it('displays project description', () => {
     render(<About />)
 
-    expect(screen.getByText(/multi-page react application/i)).toBeInTheDocument()
-    expect(screen.getByText(/built with vite/i)).toBeInTheDocument()
+    expect(screen.getByText(/collection of digital tools/i)).toBeInTheDocument()
+    expect(screen.getByText(/enhance your tabletop gaming experience/i)).toBeInTheDocument()
     expect(screen.getByText(/deployed to github pages/i)).toBeInTheDocument()
   })
 
-  it('mentions testing libraries', () => {
+  it('mentions technology stack', () => {
     render(<About />)
 
-    expect(screen.getByText(/vitest/i)).toBeInTheDocument()
-    expect(screen.getByText(/react testing library/i)).toBeInTheDocument()
+    expect(screen.getByText(/react/i)).toBeInTheDocument()
+    expect(screen.getByText(/typescript/i)).toBeInTheDocument()
+    expect(screen.getByText(/vite/i)).toBeInTheDocument()
   })
 
   it('mentions client-side routing', () => {

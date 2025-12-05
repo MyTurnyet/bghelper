@@ -11,16 +11,16 @@ describe('ShackletonBase', () => {
       expect(screen.getByRole('heading', { name: /shackleton base/i })).toBeInTheDocument()
     })
 
-    it('renders the subtitle', () => {
+    it('renders the description', () => {
       render(<ShackletonBase />)
 
-      expect(screen.getByRole('heading', { name: /corporation setup randomizer/i })).toBeInTheDocument()
+      expect(screen.getByText(/corporation setup randomizer/i)).toBeInTheDocument()
     })
 
-    it('displays description text', () => {
+    it('displays usage instructions', () => {
       render(<ShackletonBase />)
 
-      expect(screen.getByText(/use these corporation combinations for your first three games/i)).toBeInTheDocument()
+      expect(screen.getByText(/use the preset combinations for your first three games/i)).toBeInTheDocument()
     })
 
     it('renders preset games section heading', () => {
