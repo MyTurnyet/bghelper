@@ -10,6 +10,7 @@ import HelperHeader from '../../components/HelperHeader'
 import CovenantTracker from '../../components/deadReckoning/CovenantTracker'
 import AchievementTracker from '../../components/deadReckoning/AchievementTracker'
 import BattleCalculator from '../../components/deadReckoning/BattleCalculator'
+import AdvancementPiles from '../../components/deadReckoning/AdvancementPiles'
 import EndTurnModal from '../../components/deadReckoning/EndTurnModal'
 import GameOverModal from '../../components/deadReckoning/GameOverModal'
 import { useDeadReckoningGame } from '../../hooks/useDeadReckoningGame'
@@ -32,6 +33,7 @@ function DeadReckoning() {
     addCovenantCoins,
     addCovenantDamage,
     setPiratePileCount,
+    setMercantilePileCount,
     updateCovenantAchievements,
     setPlayerAchievementCount
   } = useDeadReckoningGame()
@@ -115,6 +117,14 @@ function DeadReckoning() {
         }
       }, 100)
     }
+  }
+
+  // Advancement Piles Handler
+  const handleAddLegendaryCube = () => {
+    // Add legendary achievement cube (max 4)
+    updateCovenantAchievements({
+      legendary: Math.min(4, gameState.covenantAchievements.legendary + 1)
+    })
   }
 
   // Setup screen
@@ -398,19 +408,15 @@ function DeadReckoning() {
         onPiratePileChange={setPiratePileCount}
       />
 
-      {/* Placeholder for future components */}
-      <section style={{
-        backgroundColor: 'var(--bg-card)',
-        padding: '1.5rem',
-        borderRadius: '12px',
-        border: '1px solid var(--border-color)',
-        textAlign: 'center'
-      }}>
-        <h3 style={{ color: 'var(--text-secondary)' }}>More features coming soon...</h3>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-          Advancement pile tracking and other features will be added in the next sprint.
-        </p>
-      </section>
+      {/* Advancement Piles */}
+      <AdvancementPiles
+        piratePileCount={gameState.covenant.piratePileCount}
+        mercantilePileCount={gameState.covenant.mercantilePileCount}
+        onPiratePileChange={setPiratePileCount}
+        onMercantilePileChange={setMercantilePileCount}
+        onCollectIncome={addCovenantCoins}
+        onAddLegendaryCube={handleAddLegendaryCube}
+      />
 
       {/* Modals */}
       <EndTurnModal
