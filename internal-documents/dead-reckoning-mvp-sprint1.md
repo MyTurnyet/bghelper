@@ -126,7 +126,7 @@ Display and manage Covenant resources:
 
 ---
 
-### 5. Achievement Tracker (Phase 1.3 - Simplified)
+### 5. Achievement Tracker (Phase 1.3 - Simplified) ✅
 
 **Component**: `src/components/deadReckoning/AchievementTracker.tsx`
 
@@ -135,44 +135,51 @@ Track Covenant achievements with manual inputs:
 **Layout**: Grid of achievement cards (2 columns on mobile, 4 on desktop)
 
 **Tasks**:
-- [ ] **Legendary** (4 cubes):
+- [x] **Legendary** (4 cubes):
   - Display: 4 checkbox circles (filled = earned)
   - Button: "Add Cube" (disabled at 4)
-- [ ] **Terror of the Sea**:
+- [x] **Terror of the Sea**:
   - Display: Single checkbox
   - Toggle: "Covenant Sank Player Ship"
-- [ ] **Expert Sailors** (3 cubes):
+- [x] **Expert Sailors** (3 cubes):
   - Display: 3 checkbox circles
   - Button: "Add Cube" (disabled at 3)
   - Note: "From card effects only"
-- [ ] **Elite Vessel**:
+- [x] **Elite Vessel**:
   - Display: Single checkbox
   - Auto-awarded from Covenant tracker (4 upgrades)
   - Show as locked/automatic
-- [ ] **Explorer** (5 boards):
+- [x] **Explorer** (5 boards):
   - Display: 5 checkbox circles
   - Button: "Mark Board Explored" (disabled at 5)
-- [ ] **Builder**:
+- [x] **Builder**:
   - Display: Number (target 5+) with +/- buttons
   - Auto-awards at 5
-- [ ] **Settler**:
+- [x] **Settler**:
   - Display: "Track Manually" placeholder
   - Simple checkbox for now (future: per-island tracking)
-- [ ] **Capitalist**:
+- [x] **Capitalist**:
   - Display: Single checkbox
   - Auto-awarded from coin tracker (30+)
   - Show as locked/automatic
-- [ ] **Player Achievements**:
+- [x] **Player Achievements**:
   - Simple counter with +/- buttons
   - Label: "Player Achievement Count"
 
 **End Game Detection**:
-- [ ] Count total Covenant achievements
-- [ ] Count player achievements
-- [ ] Show warning banner when either reaches 4
-- [ ] "Game Over" modal when turn ends with 4+ achievements
+- [x] Count total Covenant achievements
+- [x] Count player achievements
+- [x] Show warning banner when either reaches 4 (already implemented in Task 3)
+- [ ] "Game Over" modal when turn ends with 4+ achievements (deferred to Task 6)
 
-**Acceptance Criteria**: All 8 achievements display and can be tracked
+**Additional Features**:
+- [x] Comprehensive unit tests (51 tests covering all functionality)
+- [x] Visual achievement indicators (checkmarks, green borders)
+- [x] Cube progress displays for multi-cube achievements
+- [x] Automatic tracking for Elite Vessel and Capitalist
+- [x] Component integrated into DeadReckoning.tsx
+
+**Acceptance Criteria**: All 8 achievements display and can be tracked ✅
 
 ---
 

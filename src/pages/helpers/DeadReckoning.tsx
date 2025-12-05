@@ -8,6 +8,7 @@ import { useState } from 'react'
 import PageContainer from '../../components/PageContainer'
 import HelperHeader from '../../components/HelperHeader'
 import CovenantTracker from '../../components/deadReckoning/CovenantTracker'
+import AchievementTracker from '../../components/deadReckoning/AchievementTracker'
 import { useDeadReckoningGame } from '../../hooks/useDeadReckoningGame'
 import type { Difficulty } from '../../types/deadReckoning'
 
@@ -23,7 +24,9 @@ function DeadReckoning() {
     setCovenantWood,
     setCovenantDamage,
     setShipUpgrades,
-    convertWoodToCoins
+    convertWoodToCoins,
+    updateCovenantAchievements,
+    setPlayerAchievementCount
   } = useDeadReckoningGame()
 
   const [showSetup, setShowSetup] = useState(true)
@@ -249,6 +252,16 @@ function DeadReckoning() {
         onConvertWood={convertWoodToCoins}
       />
 
+      {/* Achievement Tracking */}
+      <AchievementTracker
+        achievements={gameState.covenantAchievements}
+        onUpdateAchievements={updateCovenantAchievements}
+        playerAchievementCount={gameState.playerAchievementCount}
+        onPlayerAchievementChange={setPlayerAchievementCount}
+        eliteVesselAchieved={gameState.covenant.shipUpgrades >= 4}
+        capitalistAchieved={gameState.covenant.coins >= 30}
+      />
+
       {/* Placeholder for future components */}
       <section style={{
         backgroundColor: 'var(--bg-card)',
@@ -259,7 +272,7 @@ function DeadReckoning() {
       }}>
         <h3 style={{ color: 'var(--text-secondary)' }}>More features coming soon...</h3>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-          Achievement tracking, battle calculator, and advancement piles will be added in the next sprint.
+          Battle calculator and advancement piles will be added in the next sprint.
         </p>
       </section>
     </PageContainer>
