@@ -30,21 +30,70 @@ function DeadReckoning() {
   } = useDeadReckoningGame()
 
   const [showSetup, setShowSetup] = useState(true)
+  const [turnHistory, setTurnHistory] = useState<string[]>([])
+  const [showHistory, setShowHistory] = useState(false)
 
   const handleStartGame = (difficulty: Difficulty) => {
     initializeGame(difficulty)
     setShowSetup(false)
+    setTurnHistory([])
   }
 
   const handleResetGame = () => {
     if (confirm('Are you sure you want to reset the game? All progress will be lost.')) {
       resetGame()
       setShowSetup(true)
+      setTurnHistory([])
     }
   }
 
   const handleEndTurn = () => {
+    // Prompt for resource collection from controlled islands
+    const collectResources = confirm(
+      'The Covenant collects resources from controlled islands.\n\n' +
+      'Did the Covenant collect any wood or coins this turn?\n\n' +
+      'Click OK to add resources, or Cancel to skip.'
+    )
+
+    if (collectResources) {
+      const woodInput = prompt('How much wood did the Covenant collect? (Enter 0 if none)')
+      const wood = woodInput ? parseInt(woodInput, 10) : 0
+
+      if (!isNaN(wood) && wood > 0) {
+        setCovenantWood(gameState.covenant.wood + wood)
+      }
+
+      const coinsInput = prompt('How many coins did the Covenant collect? (Enter 0 if none)')
+      const coins = coinsInput ? parseInt(coinsInput, 10) : 0
+
+      if (!isNaN(coins) && coins > 0) {
+        setCovenantCoins(gameState.covenant.coins + coins)
+      }
+    }
+
+    // Increment turn (this triggers automatic wood-to-coin conversion)
     incrementTurn()
+
+    // Add to turn history
+    const newTurn = `Turn ${gameState.turn + 1} completed`
+    setTurnHistory(prev => {
+      const updated = [...prev, newTurn]
+      // Keep only last 5 turns
+      return updated.slice(-5)
+    })
+
+    // Check for game end after turn
+    if (covenantAchievementCount >= 4 || gameState.playerAchievementCount >= 4) {
+      setTimeout(() => {
+        alert(
+          `Game Over!\n\n` +
+          `${covenantAchievementCount >= 4 ? 'The Covenant' : 'You'} reached 4 achievements!\n\n` +
+          `Final Scores:\n` +
+          `Covenant: ${covenantAchievementCount} achievements\n` +
+          `Player: ${gameState.playerAchievementCount} achievements`
+        )
+      }, 100)
+    }
   }
 
   // Setup screen
@@ -225,6 +274,62 @@ function DeadReckoning() {
           </button>
         </div>
       </section>
+
+      {/* Turn History */}
+      {turnHistory.length > 0 && (
+        <section style={{
+          backgroundColor: 'var(--bg-card)',
+          padding: '1rem',
+          borderRadius: '12px',
+          marginBottom: '1.5rem',
+          border: '1px solid var(--border-color)'
+        }}>
+          <button
+            onClick={() => setShowHistory(!showHistory)}
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              fontSize: '0.95rem',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              backgroundColor: 'transparent',
+              color: 'var(--text-primary)',
+              border: 'none',
+              textAlign: 'left',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}
+            aria-label={showHistory ? 'Hide turn history' : 'Show turn history'}
+          >
+            <span>Turn History ({turnHistory.length})</span>
+            <span style={{ fontSize: '1.2rem' }}>{showHistory ? '▼' : '▶'}</span>
+          </button>
+          {showHistory && (
+            <div style={{
+              marginTop: '0.75rem',
+              paddingTop: '0.75rem',
+              borderTop: '1px solid var(--border-color)'
+            }}>
+              {turnHistory.map((entry, index) => (
+                <div
+                  key={index}
+                  style={{
+                    padding: '0.5rem',
+                    marginBottom: '0.25rem',
+                    backgroundColor: 'var(--bg-secondary)',
+                    borderRadius: '4px',
+                    fontSize: '0.9rem',
+                    color: 'var(--text-secondary)'
+                  }}
+                >
+                  {entry}
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
 
       {/* Achievement Warning */}
       {(covenantAchievementCount >= 4 || gameState.playerAchievementCount >= 4) && (

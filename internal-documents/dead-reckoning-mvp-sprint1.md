@@ -183,25 +183,36 @@ Track Covenant achievements with manual inputs:
 
 ---
 
-### 6. Turn Management (Phase 8.1 - Minimal)
+### 6. Turn Management (Phase 8.1 - Minimal) ✅
 
 **Component**: Integrated into main page
 
 **Tasks**:
-- [ ] "End Turn" button:
+- [x] "End Turn" button:
   - Increments turn counter
   - Triggers end-of-turn wood-to-coin conversion (automatic)
-  - Shows modal: "Covenant collects resources from controlled islands"
+  - Shows confirm dialog: "Covenant collects resources from controlled islands"
   - Prompts: "Add any wood/coins collected"
   - Checks for game end (4 achievements)
-- [ ] "New Game" button:
+  - Displays game over alert with final scores
+- [x] "New Game" button:
   - Confirmation dialog
   - Resets all state to initial values
-- [ ] Turn history log (simple):
+  - Clears turn history
+- [x] Turn history log (simple):
   - Collapsible list showing last 5 turns
   - Each entry: "Turn X completed"
+  - Toggle button to show/hide history
+  - Only displays when turns have been completed
 
-**Acceptance Criteria**: Can advance turns and see history
+**Implementation Details**:
+- Uses browser confirm() and prompt() dialogs for simplicity
+- Turn history stored in component state (last 5 turns only)
+- Automatic wood-to-coin conversion happens via hook
+- Game over detection triggers alert with achievement counts
+- All turn history cleared on new game or reset
+
+**Acceptance Criteria**: Can advance turns and see history ✅
 
 ---
 
