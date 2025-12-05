@@ -206,11 +206,22 @@ Track Covenant achievements with manual inputs:
   - Only displays when turns have been completed
 
 **Implementation Details**:
-- Uses browser confirm() and prompt() dialogs for simplicity
+- Custom modal components (EndTurnModal, GameOverModal) for better UX
+- EndTurnModal features:
+  - Resource input fields with default value 0
+  - Wood and coins inputs with validation
+  - Skip and Confirm buttons
+  - Styled consistently with app theme
+- GameOverModal features:
+  - Displays winner and final scores
+  - Visual highlighting of winning score
+  - Large achievement counts
+  - Clean dismissal
 - Turn history stored in component state (last 5 turns only)
 - Automatic wood-to-coin conversion happens via hook
-- Game over detection triggers alert with achievement counts
+- Game over detection via useEffect watching achievement counts
 - All turn history cleared on new game or reset
+- Modal overlays with proper z-index and backdrop
 
 **Acceptance Criteria**: Can advance turns and see history ✅
 

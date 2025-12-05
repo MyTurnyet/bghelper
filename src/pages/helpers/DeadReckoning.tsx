@@ -4,11 +4,13 @@
  * Manages the Wayward Covenant AI opponent's state for Dead Reckoning's solo mode.
  */
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PageContainer from '../../components/PageContainer'
 import HelperHeader from '../../components/HelperHeader'
 import CovenantTracker from '../../components/deadReckoning/CovenantTracker'
 import AchievementTracker from '../../components/deadReckoning/AchievementTracker'
+import EndTurnModal from '../../components/deadReckoning/EndTurnModal'
+import GameOverModal from '../../components/deadReckoning/GameOverModal'
 import { useDeadReckoningGame } from '../../hooks/useDeadReckoningGame'
 import type { Difficulty } from '../../types/deadReckoning'
 
@@ -32,6 +34,8 @@ function DeadReckoning() {
   const [showSetup, setShowSetup] = useState(true)
   const [turnHistory, setTurnHistory] = useState<string[]>([])
   const [showHistory, setShowHistory] = useState(false)
+  const [showEndTurnModal, setShowEndTurnModal] = useState(false)
+  const [showGameOverModal, setShowGameOverModal] = useState(false)
 
   const handleStartGame = (difficulty: Difficulty) => {
     initializeGame(difficulty)
@@ -44,32 +48,26 @@ function DeadReckoning() {
       resetGame()
       setShowSetup(true)
       setTurnHistory([])
+      setShowGameOverModal(false)
     }
   }
 
   const handleEndTurn = () => {
-    // Prompt for resource collection from controlled islands
-    const collectResources = confirm(
-      'The Covenant collects resources from controlled islands.\n\n' +
-      'Did the Covenant collect any wood or coins this turn?\n\n' +
-      'Click OK to add resources, or Cancel to skip.'
-    )
+    // Show the end turn modal
+    setShowEndTurnModal(true)
+  }
 
-    if (collectResources) {
-      const woodInput = prompt('How much wood did the Covenant collect? (Enter 0 if none)')
-      const wood = woodInput ? parseInt(woodInput, 10) : 0
-
-      if (!isNaN(wood) && wood > 0) {
-        setCovenantWood(gameState.covenant.wood + wood)
-      }
-
-      const coinsInput = prompt('How many coins did the Covenant collect? (Enter 0 if none)')
-      const coins = coinsInput ? parseInt(coinsInput, 10) : 0
-
-      if (!isNaN(coins) && coins > 0) {
-        setCovenantCoins(gameState.covenant.coins + coins)
-      }
+  const handleEndTurnConfirm = (wood: number, coins: number) => {
+    // Add collected resources
+    if (wood > 0) {
+      setCovenantWood(gameState.covenant.wood + wood)
     }
+    if (coins > 0) {
+      setCovenantCoins(gameState.covenant.coins + coins)
+    }
+
+    // Close the modal
+    setShowEndTurnModal(false)
 
     // Increment turn (this triggers automatic wood-to-coin conversion)
     incrementTurn()
@@ -81,20 +79,17 @@ function DeadReckoning() {
       // Keep only last 5 turns
       return updated.slice(-5)
     })
-
-    // Check for game end after turn
-    if (covenantAchievementCount >= 4 || gameState.playerAchievementCount >= 4) {
-      setTimeout(() => {
-        alert(
-          `Game Over!\n\n` +
-          `${covenantAchievementCount >= 4 ? 'The Covenant' : 'You'} reached 4 achievements!\n\n` +
-          `Final Scores:\n` +
-          `Covenant: ${covenantAchievementCount} achievements\n` +
-          `Player: ${gameState.playerAchievementCount} achievements`
-        )
-      }, 100)
-    }
   }
+
+  // Check for game end condition
+  useEffect(() => {
+    if (gameState.turn > 0 && (covenantAchievementCount >= 4 || gameState.playerAchievementCount >= 4)) {
+      // Delay showing modal slightly so turn increment completes
+      setTimeout(() => {
+        setShowGameOverModal(true)
+      }, 300)
+    }
+  }, [covenantAchievementCount, gameState.playerAchievementCount, gameState.turn])
 
   // Setup screen
   if (showSetup) {
@@ -380,6 +375,19 @@ function DeadReckoning() {
           Battle calculator and advancement piles will be added in the next sprint.
         </p>
       </section>
+
+      {/* Modals */}
+      <EndTurnModal
+        isOpen={showEndTurnModal}
+        onClose={() => setShowEndTurnModal(false)}
+        onConfirm={handleEndTurnConfirm}
+      />
+      <GameOverModal
+        isOpen={showGameOverModal}
+        onClose={() => setShowGameOverModal(false)}
+        covenantAchievements={covenantAchievementCount}
+        playerAchievements={gameState.playerAchievementCount}
+      />
     </PageContainer>
   )
 }
